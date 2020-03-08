@@ -1,6 +1,8 @@
 <resources>
 
-    <string name="host_name">barquae.com</string>
+    <string name="host_name1">barquae.com</string>
+    <string name="host_name2">uaebarqtasks.page.link</string>
+
 
     <string name="app_name">UaeBarqTasks</string>
     <string name="firebase_dynamic_links">Firebase Dynamic Links</string>
