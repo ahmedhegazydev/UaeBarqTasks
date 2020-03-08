@@ -1,6 +1,7 @@
 package com.uae_barq.uaebarqtasks.main;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
@@ -15,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 import com.uae_barq.uaebarqtasks.R;
 import com.uae_barq.uaebarqtasks.constants.BarqConstants;
 import com.uae_barq.uaebarqtasks.task_dynamic.TaskDynamicActivity;
@@ -43,6 +46,35 @@ public class MainActivity extends AppCompatActivity {
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 //        testingFirebaseRealtimeDatabase();
+        checkForDynamicLinks();
+
+    }
+
+    private void checkForDynamicLinks() {
+
+        FirebaseDynamicLinks.getInstance().getDynamicLink(getIntent())
+                .addOnSuccessListener(new OnSuccessListener<PendingDynamicLinkData>() {
+                    @Override
+                    public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
+                        Log.e(TAG, "onSuccess: we have a dynamic link");
+                        Uri deepLink = null;
+                        if (pendingDynamicLinkData != null) {
+                            deepLink = pendingDynamicLinkData.getLink();
+                            Log.e(TAG, "onSuccess: " + deepLink.toString());
+                            String whichTaskToOpen = deepLink.getQueryParameter(BarqConstants.WHICH_TASK_TO_OPEN);
+                            int whichTaskToOpenValue = Integer.parseInt(whichTaskToOpen);
+                            Log.e(TAG, "onSuccess: " + whichTaskToOpenValue);
+                        }
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "onFailure: Oops we can't retrieve dynamic link data");
+                    }
+                });
+
     }
 
     private void testingFirebaseRealtimeDatabase() {

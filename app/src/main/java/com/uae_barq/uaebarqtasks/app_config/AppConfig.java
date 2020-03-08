@@ -6,7 +6,10 @@ import android.content.res.Configuration;
 
 import androidx.annotation.NonNull;
 
+import com.crashlytics.android.Crashlytics;
 import com.pixplicity.easyprefs.library.Prefs;
+
+import io.fabric.sdk.android.Fabric;
 
 public class AppConfig extends Application {
 
@@ -19,6 +22,7 @@ public class AppConfig extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
 
         // Initialize the Prefs class
         new Prefs.Builder()

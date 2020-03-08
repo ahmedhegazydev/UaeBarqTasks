@@ -1,7 +1,11 @@
 <resources>
+
+    <string name="host_name">barquae.com</string>
+
     <string name="app_name">UaeBarqTasks</string>
     <string name="firebase_dynamic_links">Firebase Dynamic Links</string>
     <string name="speed">Speed</string>
     <string name="connected">Connected to firebase</string>
     <string name="failed">\"Failed to connect \"</string>
+    <string name="asset_statements" translatable="false">[{ \"include\": \"https://example.com/.well-known/assetlinks.json\" }]</string>
 </resources>
