@@ -2,4 +2,6 @@
     <string name="app_name">UaeBarqTasks</string>
     <string name="firebase_dynamic_links">Firebase Dynamic Links</string>
     <string name="speed">Speed</string>
+    <string name="connected">Connected to firebase</string>
+    <string name="failed">\"Failed to connect \"</string>
 </resources>
