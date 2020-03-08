@@ -47,5 +47,7 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
+    //A small library containing a wrapper/helper for the Shared Preferences of android.
+    implementation 'com.pixplicity.easyprefs:library:1.9.0'
 
 }

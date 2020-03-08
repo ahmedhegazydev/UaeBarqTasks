@@ -20,8 +20,6 @@ import com.uae_barq.uaebarqtasks.constants.BarqConstants;
 import com.uae_barq.uaebarqtasks.task_dynamic.TaskDynamicActivity;
 import com.uae_barq.uaebarqtasks.task_speed.TaskSpeedActivity;
 
-import java.util.HashMap;
-
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -44,16 +42,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-
-        testingFirebaseRealtimeDatabase();
-
-
+//        testingFirebaseRealtimeDatabase();
     }
 
     private void testingFirebaseRealtimeDatabase() {
         FirebaseDatabase.getInstance().getReference()
-                .setValue(new HashMap<String, Object>()
-                        .put(BarqConstants.Status, true))
+                .child(BarqConstants.STATUS)
+                .setValue(true)
+//                .push()
+//                .setValue(new HashMap<String, Object>().put(BarqConstants.STATUS, true))
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
