@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "478786889680",
+    "firebase_url": "https://uaebarqtasks.firebaseio.com",
+    "project_id": "uaebarqtasks",
+    "storage_bucket": "uaebarqtasks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478786889680:android:678c8794bedde11ac43bd5",
+        "android_client_info": {
+          "package_name": "com.uae_barq.uaebarqtasks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "478786889680-ni2ktjs44lm74s05ovl4sfjlkm7dm24u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUuMpgyOgMCmQHq7UwW0pewglDABD8n4I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "478786889680-ni2ktjs44lm74s05ovl4sfjlkm7dm24u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

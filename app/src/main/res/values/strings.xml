@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">UaeBarqTasks</string>
+    <string name="firebase_dynamic_links">Firebase Dynamic Links</string>
+    <string name="speed">Speed</string>
 </resources>
