@@ -35,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        // ATTENTION: This was auto-generated to handle app links.
+        Intent appLinkIntent = getIntent();
+        String appLinkAction = appLinkIntent.getAction();
+        Uri appLinkData = appLinkIntent.getData();
+//        Log.e(TAG, "onCreate: " + appLinkData.toString() );
+
     }
 
     @Override
@@ -47,31 +53,35 @@ public class MainActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
 //        testingFirebaseRealtimeDatabase();
         checkForDynamicLinks();
-
     }
 
     private void checkForDynamicLinks() {
 
         FirebaseDynamicLinks.getInstance().getDynamicLink(getIntent())
-                .addOnSuccessListener(new OnSuccessListener<PendingDynamicLinkData>() {
+                .addOnSuccessListener(this, new OnSuccessListener<PendingDynamicLinkData>() {
                     @Override
                     public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
-                        Log.e(TAG, "onSuccess: we have a dynamic link");
+                        // Get deep link from result (may be null if no link is found)
+                        Log.e(TAG, "onSuccess: ");
                         Uri deepLink = null;
                         if (pendingDynamicLinkData != null) {
                             deepLink = pendingDynamicLinkData.getLink();
                             Log.e(TAG, "onSuccess: " + deepLink.toString());
-                            String whichTaskToOpen = deepLink.getQueryParameter(BarqConstants.WHICH_TASK_TO_OPEN);
-                            int whichTaskToOpenValue = Integer.parseInt(whichTaskToOpen);
-                            Log.e(TAG, "onSuccess: " + whichTaskToOpenValue);
                         }
 
+
+                        // Handle the deep link. For example, open the linked
+                        // content, or apply promotional credit to the user's
+                        // account.
+                        // ...
+
+                        // ...
                     }
                 })
-                .addOnFailureListener(new OnFailureListener() {
+                .addOnFailureListener(this, new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "onFailure: Oops we can't retrieve dynamic link data");
+                        Log.e(TAG, "getDynamicLink:onFailure", e);
                     }
                 });
 
@@ -97,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 });
 
 
+
     }
 
     @OnClick({R.id.btnStartTaskDynamic, R.id.btnStartTaskSpeed})
@@ -120,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openActivity(Class<?> classToOpen) {
-        finish();
+//        finish();
         Intent intent = new Intent(this, classToOpen);
         startActivity(intent);
     }
