@@ -2,9 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.uae_barq.uaebarqtasks">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
-
 
     <application
         android:name=".app_config.AppConfig"
@@ -20,27 +18,28 @@
             android:name="asset_statements"
             android:resource="@string/asset_statements" />
 
-        <activity android:name=".task_speed.TaskSpeedActivity">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="35a5a4cb531a9905102805c5e0ed674b4821eab7" />
 
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
-        </activity>
-
-        <activity android:name=".task_dynamic.TaskDynamicActivity">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
-
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
-        </activity>
-
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".DynamicLinkActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!--Existing app links config-->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="barquae.000webhostapp.com"
+                    android:scheme="https" />
+                <data
+                    android:host="barquae.000webhostapp.com"
+                    android:scheme="http" />
             </intent-filter>
 
             <intent-filter>
@@ -50,16 +49,25 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="@string/host_name1"
+                    android:host="barquae.000webhostapp.com"
+                    android:scheme="app" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="example.com"
                     android:pathPrefix="/applinks"
                     android:scheme="https" />
                 <data
-                    android:host="@string/host_name1"
+                    android:host="example.com"
                     android:pathPrefix="/applinks"
                     android:scheme="http" />
             </intent-filter>
-
-
+            <!--Firebase Dynamic Links Config-->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -67,22 +75,16 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="@string/host_name2"
-                    android:pathPrefix="/tasks"
+                    android:host="uaebarqtasks.page.link"
+                    android:pathPrefix="/barq_tasks"
                     android:scheme="https" />
                 <data
-                    android:host="@string/host_name2"
-                    android:pathPrefix="/tasks"
+                    android:host="uaebarqtasks.page.link"
+                    android:pathPrefix="/barq_tasks"
                     android:scheme="http" />
             </intent-filter>
 
-
         </activity>
-
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="35a5a4cb531a9905102805c5e0ed674b4821eab7" />
-
 
     </application>
 

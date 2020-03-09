@@ -73,4 +73,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.2.1'
     implementation 'com.google.firebase:firebase-core:17.2.3'
 
+
+    implementation 'androidx.cardview:cardview:1.0.0'
+
 }
