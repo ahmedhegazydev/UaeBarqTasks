@@ -22,7 +22,7 @@
             android:name="io.fabric.ApiKey"
             android:value="35a5a4cb531a9905102805c5e0ed674b4821eab7" />
 
-        <activity android:name=".DynamicLinkActivity">
+        <activity android:name=".main.DynamicLinkActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

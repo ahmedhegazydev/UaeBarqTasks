@@ -1,4 +1,4 @@
-package com.uae_barq.uaebarqtasks;
+package com.uae_barq.uaebarqtasks.main;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
+import com.uae_barq.uaebarqtasks.R;
 import com.uae_barq.uaebarqtasks.constants.BarqConstants;
 
 import butterknife.BindView;
