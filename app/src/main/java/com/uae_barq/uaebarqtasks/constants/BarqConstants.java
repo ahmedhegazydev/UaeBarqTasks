@@ -11,6 +11,7 @@ public final class BarqConstants {
     public static final String USER_PHONE_NUMBER = "phone";
     public static final String USER_COUNTRY = "country";
     public static final String USER_AGE = "age";
+    public static final long MILLI = 2000;
 
 
 

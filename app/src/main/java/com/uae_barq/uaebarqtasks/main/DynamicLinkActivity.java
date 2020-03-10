@@ -25,7 +25,6 @@ import butterknife.ButterKnife;
 
 public class DynamicLinkActivity extends AppCompatActivity {
 
-
     private static final String TAG = "DynamicLinkActivity";
 
     @BindView(R.id.tvFirstName)
@@ -45,16 +44,13 @@ public class DynamicLinkActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_dynamic_link);
-
         ButterKnife.bind(this);
     }
 
 
     /**
      * called after onCreate method
-     *
      * @param savedInstanceState
      */
     @Override
@@ -67,21 +63,6 @@ public class DynamicLinkActivity extends AppCompatActivity {
         String appLinkAction = appLinkIntent.getAction();
         appLinkData = appLinkIntent.getData();
         if (appLinkData != null) {
-            //for testing
-            //https://barquae.000webhostapp.com/v1/1234
-            //http://barquae.000webhostapp.com/v1/1234
-            //app://barquae.000webhostapp.com/v1/1234
-            //app://barquae.000webhostapp.com/v1/1234
-            //app://barquae.000webhostapp.com/v1/id/user/1234  also will get last param=1234
-            //https://example.com/applinks/?whichTaskToOpen=1
-            //https://example.com/getUserData/?first_name=Ahmed\&last_name=Hegazy\&age=24\&phone=01156749640\&country=EG\&photo="https://firebasestorage.googleapis.com/v0/b/servizi-528e9.appspot.com/o/348322e2-b0ad-45c1-b253-44f0a7298558?alt=media&token=18b52ead-0906-42e4-8bc3-10167f03b7a9
-            //https://example.com/applinks/?first_name=Ahmed&last_name=Hegazy&age=24&phone=01156749640&country=EG
-
-//            List<String> params = appLinkData.getPathSegments();
-//            String id = params.get(params.size() - 1);
-            //Toast.makeText(this, "The passed id  = " + id, Toast.LENGTH_SHORT).show();
-            //Log.e(TAG, "onCreate: " + appLinkData.getQueryParameterNames() );
-
             showProgressBar();
         }
 
@@ -100,20 +81,16 @@ public class DynamicLinkActivity extends AppCompatActivity {
 
 
         //showing the progress dialog for 2 sec
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        new Handler().postDelayed(() -> {
+            //dismissing the dialog
+            if (progressDialog != null) {
+                progressDialog.dismiss();
 
-                //dismissing the dialog
-                if (progressDialog != null) {
-                    progressDialog.dismiss();
-
-                    //then fetching the user data from parameters
-                    fetchUserProfileData(appLinkData);
-                }
-
+                //then fetching the user data from parameters
+                fetchUserProfileData(appLinkData);
             }
-        }, 2000);
+
+        }, BarqConstants.MILLI);
 
     }
 
@@ -159,7 +136,6 @@ public class DynamicLinkActivity extends AppCompatActivity {
 
     /**
      * Checking if the passed text not equals null
-     *
      * @param firstName
      * @return
      */
@@ -179,13 +155,7 @@ public class DynamicLinkActivity extends AppCompatActivity {
                         if (pendingDynamicLinkData != null) {
                             deepLink = pendingDynamicLinkData.getLink();
                             Log.e(TAG, "onSuccess: " + deepLink.toString());
-//                            String whichTaskToOpen = deepLink.getQueryParameter(Constants.whichTaskToOpen);
-//                            int whichTaskToOpenNum = Integer.parseInt(whichTaskToOpen);
-//                            Toast.makeText(DynamicLinkActivity.this, whichTaskToOpen,
-//                                    Toast.LENGTH_SHORT).show();
-
                             fetchUserProfileData(deepLink);
-
                         }
 
                     }
@@ -198,11 +168,4 @@ public class DynamicLinkActivity extends AppCompatActivity {
                 });
 
     }
-
-//    public void open(View view) {
-//        String url = "https://barquae.000webhostapp.com/";
-//        Intent i = new Intent(Intent.ACTION_VIEW);
-//        i.setData(Uri.parse(url));
-//        startActivity(i);
-//    }
 }
