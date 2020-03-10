@@ -12,4 +12,6 @@
     <string name="connected">Connected to firebase</string>
     <string name="failed">\"Failed to connect \"</string>
     <string name="asset_statements" translatable="false">[{ \"include\": \"https://barquae.000webhostapp.com/.well-known/assetlinks.json\" }]</string>
+    <string name="fetching_user_data">Fetching user data...</string>
+    <string name="okay">OK</string>
 </resources>

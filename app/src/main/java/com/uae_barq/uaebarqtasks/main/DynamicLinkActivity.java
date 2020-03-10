@@ -31,71 +31,114 @@ public class DynamicLinkActivity extends AppCompatActivity {
 
     @BindView(R.id.tvFirstName)
     TextView tvFirstName;
+
     @BindView(R.id.tvLastName)
     TextView tvLastName;
+
     @BindView(R.id.tvAge)
     TextView tvAge;
+
     @BindView(R.id.tvPhoneNumber)
     TextView tvPhoneNumber;
+
     @BindView(R.id.tvCountry)
     TextView tvCountry;
+
+    private ProgressDialog progressDialog;
     private Uri appLinkData = null;
 
+    /**
+     * manage a handler.post(runnable) by creating an instance member for the handler and runnable,
+     * then managing the handler in the Activity Lifecycle methods.
+     */
+    private Handler mHandlerShowProgressDlg = null;
+    private Runnable mRunnableShowProgressDlg = new Runnable() {
+        @Override
+        public void run() {
+            //dismissing the dialog
+            if (progressDialog != null) {
+                progressDialog.dismiss();
 
-    //called firstly
+                if (appLinkData != null) {
+                    //then fetching the user data from parameters
+                    fetchUserProfileData(appLinkData);
+                }
+            }
+
+        }
+    };
+
+    /**
+     * Called firstly here as Activity Life Cycle
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_dynamic_link);
+
+        //Before using any views, we need to inject ButterKnife
         ButterKnife.bind(this);
     }
 
-
     /**
-     * called after onCreate method
+     * called after onCreate method as Activity Life Cycle
+     * For accessing what i want to access
+     *
      * @param savedInstanceState
      */
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
+        //initialize the progress dialog
+        initProgressDialog();
+
         //Only for app links
+        checkForAppDeepLink();
+
+        //for firebase dynamic links
+        checkForFirebaseDynamicLinks();
+
+    }
+
+    /**
+     * initialize the progress dialog
+     */
+    private void initProgressDialog() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage(getString(R.string.fetching_user_data));
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+    }
+
+    private void checkForAppDeepLink() {
         // ATTENTION: This was auto-generated to handle app links.
         Intent appLinkIntent = getIntent();
         String appLinkAction = appLinkIntent.getAction();
         appLinkData = appLinkIntent.getData();
         if (appLinkData != null) {
-            showProgressBar();
+            showProgressBar(appLinkData);
         }
-
-        //for firebase dynamic links
-        checkForDynamicLinks();
-
     }
 
-    private void showProgressBar() {
+    /**
+     * Showing the progress bar as UX waiting for fetching data from appLink
+     *
+     * @param appLinkData
+     */
+    private void showProgressBar(Uri appLinkData) {
 
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Fetching user data...");
-        progressDialog.setCancelable(false);
-        progressDialog.setCanceledOnTouchOutside(false);
+        //Showing the progress dialog
         progressDialog.show();
 
 
         //showing the progress dialog for 2 sec
-        new Handler().postDelayed(() -> {
-            //dismissing the dialog
-            if (progressDialog != null) {
-                progressDialog.dismiss();
-
-                //then fetching the user data from parameters
-                fetchUserProfileData(appLinkData);
-            }
-
-        }, BarqConstants.MILLI);
+        mHandlerShowProgressDlg.postDelayed(mRunnableShowProgressDlg, BarqConstants.MILLI);
 
     }
-
 
     /**
      * Fetching the user profile data from the intent through the QueryParameters.
@@ -139,23 +182,30 @@ public class DynamicLinkActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method works but it tested in the Prev. mentioned email attached video for
+     * the ToDoList app, as this method needs areal published app with firebase dynamic link integration.
+     * Wow
+     *
+     * @param welcomeMessage
+     */
     private void showWelcomeMessageAlertToUser(String welcomeMessage) {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .create();
         alertDialog.setTitle(getString(R.string.app_name));
         alertDialog.setMessage(welcomeMessage);
-
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.okay), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
-
         alertDialog.show();
     }
 
     /**
      * Checking if the passed text not equals null
+     *
      * @param firstName
      * @return
      */
@@ -163,19 +213,23 @@ public class DynamicLinkActivity extends AppCompatActivity {
         return TextUtils.equals(firstName, null);
     }
 
-    private void checkForDynamicLinks() {
-
+    /**
+     *
+     */
+    private void checkForFirebaseDynamicLinks() {
         FirebaseDynamicLinks.getInstance().getDynamicLink(getIntent())
                 .addOnSuccessListener(this, new OnSuccessListener<PendingDynamicLinkData>() {
                     @Override
                     public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
                         // Get deep link from result (may be null if no link is found)
-                        Log.e(TAG, "onSuccess: ");
+                        Log.e(TAG, "onSuccess: Get deep link from result (may be null if no link is found)");
                         Uri deepLink = null;
                         if (pendingDynamicLinkData != null) {
                             deepLink = pendingDynamicLinkData.getLink();
-                            Log.e(TAG, "onSuccess: " + deepLink.toString());
-                            fetchUserProfileData(deepLink);
+                            if (deepLink != null) {
+                                Log.e(TAG, "onSuccess: " + deepLink.toString());
+                                fetchUserProfileData(deepLink);
+                            }
                         }
 
                     }
@@ -183,9 +237,22 @@ public class DynamicLinkActivity extends AppCompatActivity {
                 .addOnFailureListener(this, new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "getDynamicLink:onFailure", e);
+                        Log.e(TAG, "getDynamicLink: onFailure" + e.getMessage());
+                        Log.e(TAG, "getDynamicLink: onFailure" + e.getLocalizedMessage());
                     }
                 });
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        //In case of activity finishes its lifecycle before the Handler executes the code.
+        if (mHandlerShowProgressDlg != null && mRunnableShowProgressDlg != null) {
+            mHandlerShowProgressDlg.removeCallbacks(mRunnableShowProgressDlg);
+        }
+
 
     }
 }
