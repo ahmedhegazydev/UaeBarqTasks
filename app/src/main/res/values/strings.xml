@@ -1,17 +1,6 @@
 <resources>
-
-    <string name="host_name1">example.com</string>
-    <string name="host_name2">uaebarqtasks.page.link</string>
-    <string name="pathPrefix1">applinks</string>
-    <string name="pathPrefix2">barq_tasks</string>
-
-
     <string name="app_name">UaeBarqTasks</string>
-    <string name="firebase_dynamic_links">Firebase Dynamic Links</string>
-    <string name="speed">Speed</string>
-    <string name="connected">Connected to firebase</string>
-    <string name="failed">\"Failed to connect \"</string>
     <string name="asset_statements" translatable="false">[{ \"include\": \"https://barquae.000webhostapp.com/.well-known/assetlinks.json\" }]</string>
-    <string name="fetching_user_data">Fetching user data...</string>
-    <string name="okay">OK</string>
+    <string name="fetching_user_data">Fetching user data…</string>
+    <string name="dialog_okay">OK</string>
 </resources>

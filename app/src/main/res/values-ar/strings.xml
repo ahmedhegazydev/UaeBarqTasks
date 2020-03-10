@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">تاسك برق الامارات</string>
+    <string name="fetching_user_data">استقبال بيانات العميل…</string>
+    <string name="dialog_okay">تمام</string>
+</resources>

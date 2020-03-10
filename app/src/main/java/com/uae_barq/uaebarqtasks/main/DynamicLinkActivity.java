@@ -153,11 +153,11 @@ public class DynamicLinkActivity extends AppCompatActivity {
         String age = appLinkData.getQueryParameter(BarqConstants.USER_AGE);
 //        String photo = appLinkData.getQueryParameter("photo");
 
-        Log.e(TAG, "onCreate: firstName   " + firstName);
-        Log.e(TAG, "onCreate: lastName    " + lastName);
-        Log.e(TAG, "onCreate: phoneNumber " + phoneNumber);
-        Log.e(TAG, "onCreate: country     " + country);
-        Log.e(TAG, "onCreate: age         " + age);
+        Log.i(TAG, "onCreate: firstName   " + firstName);
+        Log.i(TAG, "onCreate: lastName    " + lastName);
+        Log.i(TAG, "onCreate: phoneNumber " + phoneNumber);
+        Log.i(TAG, "onCreate: country     " + country);
+        Log.i(TAG, "onCreate: age         " + age);
 //        Log.e(TAG, "onCreate: " + photo);
 
         if (!notNull(firstName)) {
@@ -196,7 +196,7 @@ public class DynamicLinkActivity extends AppCompatActivity {
                 .create();
         alertDialog.setTitle(getString(R.string.app_name));
         alertDialog.setMessage(welcomeMessage);
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.okay), new DialogInterface.OnClickListener() {
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.dialog_okay), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -224,12 +224,12 @@ public class DynamicLinkActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
                         // Get deep link from result (may be null if no link is found)
-                        Log.e(TAG, "onSuccess: Get deep link from result (may be null if no link is found)");
+                        Log.i(TAG, "onSuccess: Get deep link from result (may be null if no link is found)");
                         Uri deepLink = null;
                         if (pendingDynamicLinkData != null) {
                             deepLink = pendingDynamicLinkData.getLink();
                             if (deepLink != null) {
-                                Log.e(TAG, "onSuccess: " + deepLink.toString());
+                                Log.i(TAG, "onSuccess: " + deepLink.toString());
                                 fetchUserProfileData(deepLink);
                             }
                         }
