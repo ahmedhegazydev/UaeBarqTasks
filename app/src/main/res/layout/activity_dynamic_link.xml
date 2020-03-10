@@ -48,7 +48,7 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:padding="10dp"
-                    android:text="FirstName"
+                    android:text="@string/firstname"
                     android:textAllCaps="false"
                     android:textSize="18sp"
                     android:textStyle="bold">
@@ -62,7 +62,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="18sp"
-                    android:text="..."
+                    android:text="@string/dots"
                     android:textAllCaps="false">
 
                 </TextView>
@@ -84,7 +84,7 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:padding="10dp"
-                    android:text="LastName"
+                    android:text="@string/lastname"
                     android:textAllCaps="false"
                     android:textSize="18sp"
                     android:textStyle="bold">
@@ -98,7 +98,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="18sp"
-                    android:text="..."
+                    android:text="@string/dots"
                     android:textAllCaps="false">
 
                 </TextView>
@@ -120,7 +120,7 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:padding="10dp"
-                    android:text="Age"
+                    android:text="@string/age"
                     android:textAllCaps="false"
                     android:textSize="18sp"
                     android:textStyle="bold">
@@ -134,7 +134,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="18sp"
-                    android:text="..."
+                    android:text="@string/dots"
                     android:textAllCaps="false">
 
                 </TextView>
@@ -156,7 +156,7 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:padding="10dp"
-                    android:text="Phone"
+                    android:text="@string/phone"
                     android:textAllCaps="false"
                     android:textSize="18sp"
                     android:textStyle="bold">
@@ -170,7 +170,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="18sp"
-                    android:text="..."
+                    android:text="@string/dots"
                     android:textAllCaps="false">
 
                 </TextView>
@@ -192,7 +192,7 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:padding="10dp"
-                    android:text="Country"
+                    android:text="@string/country"
                     android:textAllCaps="false"
                     android:textSize="18sp"
                     android:textStyle="bold">
@@ -206,7 +206,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="18sp"
-                    android:text="..."
+                    android:text="@string/dots"
                     android:textAllCaps="false">
 
                 </TextView>

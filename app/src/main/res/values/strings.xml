@@ -3,4 +3,14 @@
     <string name="asset_statements" translatable="false">[{ \"include\": \"https://barquae.000webhostapp.com/.well-known/assetlinks.json\" }]</string>
     <string name="fetching_user_data">Fetching user data…</string>
     <string name="dialog_okay">OK</string>
+    <string name="firstname">FirstName</string>
+    <string name="lastname">LastName</string>
+    <string name="age">Age</string>
+    <string name="phone">Phone</string>
+    <string name="country">Country</string>
+    <string name="dots">...</string>
+    <string name="dots">...</string>
+    <string name="dots">...</string>
+    <string name="dots">...</string>
+    <string name="dots">...</string>
 </resources>
