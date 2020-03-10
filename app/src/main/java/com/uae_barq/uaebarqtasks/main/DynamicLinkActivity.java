@@ -1,6 +1,8 @@
 package com.uae_barq.uaebarqtasks.main;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -132,6 +134,24 @@ public class DynamicLinkActivity extends AppCompatActivity {
         }
 
 
+        String welcomeMessage = appLinkData.getQueryParameter(BarqConstants.WELCOME_MESSAGE);
+        showWelcomeMessageAlertToUser(welcomeMessage);
+
+    }
+
+    private void showWelcomeMessageAlertToUser(String welcomeMessage) {
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle(getString(R.string.app_name));
+        alertDialog.setMessage(welcomeMessage);
+
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
     }
 
     /**

@@ -13,6 +13,7 @@ public final class BarqConstants {
     public static final String USER_AGE = "age";
     public static final long MILLI = 2000;
 
+    public static final String WELCOME_MESSAGE = "wolcome_message";
 
 
 }
