@@ -176,8 +176,10 @@ public class DynamicLinkActivity extends AppCompatActivity {
             tvAge.setText(age);
         }
 
-
+        //fetching the param value
         String welcomeMessage = appLinkData.getQueryParameter(BarqConstants.WELCOME_MESSAGE);
+
+        //sending the param value to alert dialog
         showWelcomeMessageAlertToUser(welcomeMessage);
 
     }
