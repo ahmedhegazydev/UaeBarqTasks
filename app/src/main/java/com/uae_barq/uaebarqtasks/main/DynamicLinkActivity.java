@@ -18,6 +18,10 @@ import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.uae_barq.uaebarqtasks.R;
 import com.uae_barq.uaebarqtasks.constants.BarqConstants;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -98,6 +102,9 @@ public class DynamicLinkActivity extends AppCompatActivity {
         //initialize the progress dialog
         initProgressDialog();
 
+        //initialize handler
+        initHandler();
+
         //Only for app links
         checkForAppDeepLink();
 
@@ -142,11 +149,26 @@ public class DynamicLinkActivity extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside(false);
     }
 
+    /**
+     * checkForAppDeepLink
+     */
     private void checkForAppDeepLink() {
         // ATTENTION: This was auto-generated to handle app links.
         Intent appLinkIntent = getIntent();
         String appLinkAction = appLinkIntent.getAction();
-        appLinkData = appLinkIntent.getData();
+
+
+        //appLinkData = appLinkIntent.getData();
+        URL url;
+        String myUrlStr = "https://uaebarqtasks.page.link/?link=https://example.com/appLinks/?first_name%3DAhmed%26last_name%3DHegazy%26age%3D24%26phone%3D01156749640%26country%3DEG&apn=com.uae_barq.uaebarqtasks";
+        try {
+            url = new URL(myUrlStr);
+            appLinkData = Uri.parse(url.toURI().toString());
+        } catch (MalformedURLException e1) {
+            e1.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
         if (appLinkData != null) {
             showProgressBar(appLinkData);
         }
@@ -161,7 +183,6 @@ public class DynamicLinkActivity extends AppCompatActivity {
 
         //Showing the progress dialog
         progressDialog.show();
-
 
         //showing the progress dialog for 2 sec
         mHandlerShowProgressDlg.postDelayed(mRunnableShowProgressDlg, BarqConstants.MILLI);
@@ -275,5 +296,12 @@ public class DynamicLinkActivity extends AppCompatActivity {
         if (mHandlerShowProgressDlg != null && mRunnableShowProgressDlg != null) {
             mHandlerShowProgressDlg.removeCallbacks(mRunnableShowProgressDlg);
         }
+    }
+
+    /**
+     * initHandler
+     */
+    private void initHandler() {
+        mHandlerShowProgressDlg = new Handler();
     }
 }
