@@ -24,6 +24,7 @@ import com.uae_barq.uaebarqtasks.constants.BarqConstants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class DynamicLinkActivity extends AppCompatActivity {
 
@@ -68,6 +69,10 @@ public class DynamicLinkActivity extends AppCompatActivity {
         }
     };
 
+    //Butterknife also allows to unbind again, via the Unbinder object.
+    private Unbinder unbinder;
+
+
     /**
      * Called firstly here as Activity Life Cycle
      *
@@ -79,8 +84,9 @@ public class DynamicLinkActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_dynamic_link);
 
+        // Initialize ButterKnife
         //Before using any views, we need to inject ButterKnife
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
     }
 
     /**
@@ -102,6 +108,32 @@ public class DynamicLinkActivity extends AppCompatActivity {
         //for firebase dynamic links
         checkForFirebaseDynamicLinks();
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        //In case of activity finishes its lifecycle before the Handler executes the code.
+        removeHandlerCallbacks();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        unbindButterKnife();
+
+        //In case of activity finishes its lifecycle before the Handler executes the code.
+        removeHandlerCallbacks();
+    }
+
+    /**
+     * unbindButterKnife
+     */
+    private void unbindButterKnife() {
+        if (unbinder != null)
+            unbinder.unbind();
     }
 
     /**
@@ -244,22 +276,6 @@ public class DynamicLinkActivity extends AppCompatActivity {
                     }
                 });
 
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        //In case of activity finishes its lifecycle before the Handler executes the code.
-        removeHandlerCallbacks();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        //In case of activity finishes its lifecycle before the Handler executes the code.
-        removeHandlerCallbacks();
     }
 
     /**
