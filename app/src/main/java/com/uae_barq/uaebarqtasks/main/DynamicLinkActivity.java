@@ -251,10 +251,23 @@ public class DynamicLinkActivity extends AppCompatActivity {
         super.onStop();
 
         //In case of activity finishes its lifecycle before the Handler executes the code.
+        removeHandlerCallbacks();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        //In case of activity finishes its lifecycle before the Handler executes the code.
+        removeHandlerCallbacks();
+    }
+
+    /**
+     * In case of activity finishes its lifecycle before the Handler executes the code.
+     */
+    private void removeHandlerCallbacks() {
         if (mHandlerShowProgressDlg != null && mRunnableShowProgressDlg != null) {
             mHandlerShowProgressDlg.removeCallbacks(mRunnableShowProgressDlg);
         }
-
-
     }
 }
