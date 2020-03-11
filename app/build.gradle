@@ -59,7 +59,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
 
-    // Espresso
+
+    //Espresso helps you write concise, beautiful and reliable Android UI tests.
     def androidx_test_espresso = "3.1.0"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso"
 
@@ -99,6 +100,12 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
     //Wow  -  0 distinct leaks
 
+
+    //Mockito is a mocking framework that tastes really good. It lets you write beautiful tests with a clean & simple API.
+    // Mockito doesn’t give you hangover because the tests are very readable and they produce clean verification errors.
+    def MOCKITO_VERSION = "2.19.0"
+    testImplementation "org.mockito:mockito-all:1.10.19"
+    testImplementation "org.mockito:mockito-core:$MOCKITO_VERSION"
 
 
 }

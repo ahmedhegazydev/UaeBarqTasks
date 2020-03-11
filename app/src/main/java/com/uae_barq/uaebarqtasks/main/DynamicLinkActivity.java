@@ -18,10 +18,6 @@ import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.uae_barq.uaebarqtasks.R;
 import com.uae_barq.uaebarqtasks.constants.BarqConstants;
 
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -158,21 +154,32 @@ public class DynamicLinkActivity extends AppCompatActivity {
         String appLinkAction = appLinkIntent.getAction();
 
 
-        //appLinkData = appLinkIntent.getData();
-        URL url;
-        String myUrlStr = "https://uaebarqtasks.page.link/?link=https://example.com/appLinks/?first_name%3DAhmed%26last_name%3DHegazy%26age%3D24%26phone%3D01156749640%26country%3DEG&apn=com.uae_barq.uaebarqtasks";
-        try {
-            url = new URL(myUrlStr);
-            appLinkData = Uri.parse(url.toURI().toString());
-        } catch (MalformedURLException e1) {
-            e1.printStackTrace();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        //only for testing, please uncomment this below line for checking the dynamic link
+        //appLinkData = createTestingDynamicLink();
+//        Log.e(TAG, "checkForAppDeepLink: " + appLinkData.toString());
+
+        //real when app is installed, the data will be filled from the clicked dynamic link
+        appLinkData = appLinkIntent.getData();
+
         if (appLinkData != null) {
             showProgressBar(appLinkData);
         }
     }
+
+    private Uri createTestingDynamicLink() {
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("https")
+                .authority("example.com")
+                .appendPath("appLinks")
+                .appendQueryParameter(BarqConstants.USER_FIRST_NAME, "Ahmed")
+                .appendQueryParameter(BarqConstants.USER_LAST_NAME, "Hegazi")
+                .appendQueryParameter(BarqConstants.USER_AGE, "24")
+                .appendQueryParameter(BarqConstants.USER_COUNTRY, "EG")
+                .appendQueryParameter(BarqConstants.USER_PHONE_NUMBER, "01156749640");
+//                .fragment("section-name");
+        return builder.build();
+    }
+
 
     /**
      * Showing the progress bar as UX waiting for fetching data from appLink
