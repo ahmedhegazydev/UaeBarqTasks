@@ -103,9 +103,12 @@ dependencies {
 
     //Mockito is a mocking framework that tastes really good. It lets you write beautiful tests with a clean & simple API.
     // Mockito doesn’t give you hangover because the tests are very readable and they produce clean verification errors.
-    def MOCKITO_VERSION = "2.19.0"
     testImplementation "org.mockito:mockito-all:1.10.19"
-    testImplementation "org.mockito:mockito-core:$MOCKITO_VERSION"
-
+    // required if you want to use Mockito for unit tests
+    def MOCKITO_VERSION_CORE = "2.19.0"
+    testImplementation "org.mockito:mockito-core:$MOCKITO_VERSION_CORE"
+    // required if you want to use Mockito for Android tests
+    def MOCKITO_VERSION_ANDROID = "2.7.22"
+    androidTestImplementation "org.mockito:mockito-android:$MOCKITO_VERSION_ANDROID"
 
 }

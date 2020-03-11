@@ -166,7 +166,12 @@ public class DynamicLinkActivity extends AppCompatActivity {
         }
     }
 
-    private Uri createTestingDynamicLink() {
+    /**
+     * createTestingDynamicLink
+     *
+     * @return
+     */
+    public Uri createTestingDynamicLink() {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https")
                 .authority("example.com")
@@ -179,7 +184,6 @@ public class DynamicLinkActivity extends AppCompatActivity {
 //                .fragment("section-name");
         return builder.build();
     }
-
 
     /**
      * Showing the progress bar as UX waiting for fetching data from appLink
