@@ -11,14 +11,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
-import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 import com.uae_barq.uaebarqtasks.R;
 import com.uae_barq.uaebarqtasks.constants.BarqConstants;
 
@@ -252,28 +248,22 @@ public class DynamicLinkActivity extends AppCompatActivity {
      */
     private void checkForFirebaseDynamicLinks() {
         FirebaseDynamicLinks.getInstance().getDynamicLink(getIntent())
-                .addOnSuccessListener(this, new OnSuccessListener<PendingDynamicLinkData>() {
-                    @Override
-                    public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
-                        // Get deep link from result (may be null if no link is found)
-                        Log.i(TAG, "onSuccess: Get deep link from result (may be null if no link is found)");
-                        Uri deepLink = null;
-                        if (pendingDynamicLinkData != null) {
-                            deepLink = pendingDynamicLinkData.getLink();
-                            if (deepLink != null) {
-                                Log.i(TAG, "onSuccess: " + deepLink.toString());
-                                fetchUserProfileData(deepLink);
-                            }
+                .addOnSuccessListener(this, pendingDynamicLinkData -> {
+                    // Get deep link from result (may be null if no link is found)
+                    Log.i(TAG, "onSuccess: Get deep link from result (may be null if no link is found)");
+                    Uri deepLink = null;
+                    if (pendingDynamicLinkData != null) {
+                        deepLink = pendingDynamicLinkData.getLink();
+                        if (deepLink != null) {
+                            Log.i(TAG, "onSuccess: " + deepLink.toString());
+                            fetchUserProfileData(deepLink);
                         }
+                    }
 
-                    }
                 })
-                .addOnFailureListener(this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "getDynamicLink: onFailure" + e.getMessage());
-                        Log.e(TAG, "getDynamicLink: onFailure" + e.getLocalizedMessage());
-                    }
+                .addOnFailureListener(this, e -> {
+                    Log.e(TAG, "getDynamicLink: onFailure" + e.getMessage());
+                    Log.e(TAG, "getDynamicLink: onFailure" + e.getLocalizedMessage());
                 });
 
     }
