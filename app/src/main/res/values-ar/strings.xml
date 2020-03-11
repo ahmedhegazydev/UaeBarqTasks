@@ -3,4 +3,10 @@
     <string name="app_name">تاسك برق الامارات</string>
     <string name="fetching_user_data">استقبال بيانات العميل…</string>
     <string name="dialog_okay">تمام</string>
+
+    <string name="firstname">الاسم الاول</string>
+    <string name="lastname">الاسم الاخير</string>
+    <string name="age">العمر</string>
+    <string name="phone">دقم الهاتف</string>
+    <string name="country">البلد</string>
 </resources>

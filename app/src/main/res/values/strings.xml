@@ -8,9 +8,5 @@
     <string name="age">Age</string>
     <string name="phone">Phone</string>
     <string name="country">Country</string>
-    <string name="dots">...</string>
-    <string name="dots">...</string>
-    <string name="dots">...</string>
-    <string name="dots">...</string>
-    <string name="dots">...</string>
+    <string name="dots" translatable="false">...</string>
 </resources>
