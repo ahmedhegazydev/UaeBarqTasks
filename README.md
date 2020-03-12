@@ -1,11 +1,11 @@
 # UaeBarqTasks
 
-Butterknife.
-Cards.
-ContrainLayouts.
-Handles.
-LifeCycles.
-LeakCanary Memeory Detection.
-Firebase DynamicLinks.
-Mockito.
+Butterknife, 
+Cards, 
+ContrainLayouts, 
+Handlers, 
+LifeCycles, 
+LeakCanary Memeory Detection, 
+Firebase DynamicLinks, 
+Mockito, and 
 Espresso.
