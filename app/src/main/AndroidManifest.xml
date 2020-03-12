@@ -27,7 +27,10 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <!--Existing app links config-->
+            <!--Existing app links config, The below intent filters only
+            for testing app links with any scheme and any host.
+
+            -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -67,7 +70,10 @@
                     android:pathPrefix="/applinks"
                     android:scheme="http" />
             </intent-filter>
-            <!--Firebase Dynamic Links Config-->
+            <!--Firebase Dynamic Links Config
+            , it will work only after the app published on Google Play Store
+            And I can analyze the number of clicks on Firebase dynamic links console.
+            -->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
