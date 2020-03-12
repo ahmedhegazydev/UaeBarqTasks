@@ -26,18 +26,15 @@ public class DynamicLinkActivity extends AppCompatActivity {
 
     private static final String TAG = "DynamicLinkActivity";
 
+
     @BindView(R.id.tvFirstName)
     TextView tvFirstName;
-
     @BindView(R.id.tvLastName)
     TextView tvLastName;
-
     @BindView(R.id.tvAge)
     TextView tvAge;
-
     @BindView(R.id.tvPhoneNumber)
     TextView tvPhoneNumber;
-
     @BindView(R.id.tvCountry)
     TextView tvCountry;
 
@@ -83,6 +80,7 @@ public class DynamicLinkActivity extends AppCompatActivity {
         // Initialize ButterKnife
         //Before using any views, we need to inject ButterKnife
         unbinder = ButterKnife.bind(this);
+
     }
 
     /**
@@ -113,14 +111,19 @@ public class DynamicLinkActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
-        //In case of activity finishes its lifecycle before the Handler executes the code.
-        removeHandlerCallbacks();
+        releaseAll();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
+        releaseAll();
+    }
+
+    private void releaseAll() {
+
+        //releasing butterknife injection
         unbindButterKnife();
 
         //In case of activity finishes its lifecycle before the Handler executes the code.
