@@ -1,4 +1,4 @@
-package com.uae_barq.uaebarqtasks.constants;
+package com.uae_barq.uaebarqtasks.java.constants;
 
 public final class BarqConstants {
 

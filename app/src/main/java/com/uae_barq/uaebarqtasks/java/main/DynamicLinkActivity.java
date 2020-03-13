@@ -1,4 +1,4 @@
-package com.uae_barq.uaebarqtasks.main;
+package com.uae_barq.uaebarqtasks.java.main;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.uae_barq.uaebarqtasks.R;
-import com.uae_barq.uaebarqtasks.constants.BarqConstants;
+import com.uae_barq.uaebarqtasks.java.constants.BarqConstants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

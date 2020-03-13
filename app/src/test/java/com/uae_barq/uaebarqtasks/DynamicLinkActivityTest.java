@@ -1,6 +1,6 @@
 package com.uae_barq.uaebarqtasks;
 
-import com.uae_barq.uaebarqtasks.main.DynamicLinkActivity;
+import com.uae_barq.uaebarqtasks.java.main.DynamicLinkActivity;
 
 import org.junit.After;
 import org.junit.Before;

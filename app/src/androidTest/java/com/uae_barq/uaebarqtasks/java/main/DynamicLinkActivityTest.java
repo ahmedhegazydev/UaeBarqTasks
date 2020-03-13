@@ -1,4 +1,4 @@
-package com.uae_barq.uaebarqtasks.main;
+package com.uae_barq.uaebarqtasks.java.main;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;

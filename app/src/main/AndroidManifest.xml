@@ -2,10 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.uae_barq.uaebarqtasks">
 
+
+    <!--When you are working on app which wants to access internet,
+    you need to add extra permission in androidManifest.xml
+    else your application won’t be able to access internet.-->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".app_config.AppConfig"
+        android:name=".java.app_config.AppConfig"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,7 +26,11 @@
             android:name="io.fabric.ApiKey"
             android:value="35a5a4cb531a9905102805c5e0ed674b4821eab7" />
 
-        <activity android:name=".main.DynamicLinkActivity">
+
+        <!--Java Activity-->
+        <activity
+            android:name=".java.main.DynamicLinkActivity"
+            android:label="@string/activity_java">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -91,6 +99,17 @@
             </intent-filter>
 
         </activity>
+
+        <!--Kotlin Activity-->
+        <activity
+            android:name=".kotlin.main.DynamicLinkActivity"
+            android:label="@string/activity_kotlin">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+        </activity>
+
 
     </application>
 

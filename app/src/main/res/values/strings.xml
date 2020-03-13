@@ -9,4 +9,6 @@
     <string name="phone">Phone</string>
     <string name="country">Country</string>
     <string name="dots" translatable="false">...</string>
+    <string name="activity_java" translatable="false">Java Activity</string>
+    <string name="activity_kotlin" translatable="false">Kotlin Activity</string>
 </resources>
