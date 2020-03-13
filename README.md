@@ -10,5 +10,7 @@ LifeCycles,
 LeakCanary Memeory Detection, 
 Firebase DynamicLinks, 
 Loaders, 
+Fabric, 
+Crashlytics, 
 Mockito, and 
 Espresso.
